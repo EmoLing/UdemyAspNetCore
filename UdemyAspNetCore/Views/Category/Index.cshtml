@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Category>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                Create New Category
+            </a>
+        </div>
+    </div>
+    <br /><br />
+    @if (!Model.Any())
+    {
+        <p>No category exists.</p>
+        return;
+    }
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Display Order
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td style="width:50%">@obj.Name</td>
+                <td style="width:30%">@obj.DisplayOrder</td>
+                <td></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
