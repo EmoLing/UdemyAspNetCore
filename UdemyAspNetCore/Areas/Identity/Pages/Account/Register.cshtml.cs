@@ -164,6 +164,9 @@ namespace UdemyAspNetCore.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        if (User.IsInRole(WC.AdminRole))
+                            return RedirectToAction("Index");
+
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }

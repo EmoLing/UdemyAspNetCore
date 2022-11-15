@@ -29,41 +29,44 @@
                         <li class="nav-link text-dark">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-link dropdown text-dark">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Content Management
-                            </a>
-                            <ul class="nav-item dropdown-menu text-dark">
-                                <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="ApplicationType" asp-action="Index">ApplicationType</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
-                                </li>
-                                <li><div class="dropdown-divider"></div></li>
-                                <li>
-                                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Create Admin User</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-link text-dark">
-                            @if (HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCard>>(WC.SessionCard) is not null)
-                            {
-                                <a asp-action="Index" asp-controller="Cart" class="nav-link">
-                                    @{
-                                        var count = HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCard>>(WC.SessionCard).Count;
-                                    }
-                                    <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
+                        @if (User.IsInRole(WC.AdminRole))
+                        {
+                            <li class="nav-link dropdown text-dark">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Content Management
                                 </a>
+                                <ul class="nav-item dropdown-menu text-dark">
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="ApplicationType" asp-action="Index">ApplicationType</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                                    </li>
+                                    <li><div class="dropdown-divider"></div></li>
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Create Admin User</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        <li class="nav-link text-dark">
+                            @if (HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart) is not null)
+                            {
+                                        <a asp-action="Index" asp-controller="Cart" class="nav-link">
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart).Count;
+                                    }
+                                            <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
+                                        </a>
                             }
                             else
                             {
-                                <a href="#" class="nav-link" >
-                                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
-                                </a>
+                                        <a href="#" class="nav-link" >
+                                            <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                                        </a>
                             }
                         </li>
                     </ul>

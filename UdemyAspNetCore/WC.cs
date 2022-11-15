@@ -2,9 +2,12 @@
 {
     public static class WC
     {
-        public static string ImagePath = @"\images\product\";
-        public static string SessionCard = "ShoppingCardSession";
-        public static string AdminRole = "Admin";
-        public static string CustomerRole = "Customer";
+        public const string ImagePath = @"\images\product\";
+        public const string SessionCart = "ShoppingCardSession";
+
+        public const string AdminRole = "Admin";
+        public const string CustomerRole = "Customer";
+
+        public const string EmailAdmin = "temchik1997@protonmail.com";
     }
 }

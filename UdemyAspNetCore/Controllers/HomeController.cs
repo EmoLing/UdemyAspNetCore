@@ -32,8 +32,8 @@ namespace UdemyAspNetCore.Controllers
 
         public IActionResult Details(int id)
         {
-            var shoppingCardList = new List<ShoppingCard>();
-            var sessionCard = HttpContext.Session.Get<IEnumerable<ShoppingCard>>(WC.SessionCard);
+            var shoppingCardList = new List<ShoppingCart>();
+            var sessionCard = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart);
 
             if (sessionCard is not null && sessionCard.Any())
                 shoppingCardList = sessionCard.ToList();
@@ -57,14 +57,14 @@ namespace UdemyAspNetCore.Controllers
         [HttpPost, ActionName("Details")]
         public IActionResult DetailsPost(int id)
         {
-            var shoppingCardList = new List<ShoppingCard>();
-            var sessionCard = HttpContext.Session.Get<IEnumerable<ShoppingCard>>(WC.SessionCard);
+            var shoppingCardList = new List<ShoppingCart>();
+            var sessionCard = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart);
 
             if (sessionCard is not null && sessionCard.Any())
                 shoppingCardList = sessionCard.ToList();
 
-            shoppingCardList.Add(new ShoppingCard() { ProductId = id });
-            HttpContext.Session.Set(WC.SessionCard, shoppingCardList);
+            shoppingCardList.Add(new ShoppingCart() { ProductId = id });
+            HttpContext.Session.Set(WC.SessionCart, shoppingCardList);
 
             return RedirectToAction(nameof(Index));
         }
@@ -72,8 +72,8 @@ namespace UdemyAspNetCore.Controllers
         //RemoveFromCard
         public IActionResult RemoveFromCard(int id)
         {
-            var shoppingCardList = new List<ShoppingCard>();
-            var sessionCard = HttpContext.Session.Get<IEnumerable<ShoppingCard>>(WC.SessionCard);
+            var shoppingCardList = new List<ShoppingCart>();
+            var sessionCard = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart);
 
             if (sessionCard is not null && sessionCard.Any())
                 shoppingCardList = sessionCard.ToList();
@@ -83,7 +83,7 @@ namespace UdemyAspNetCore.Controllers
             if (itemToRemove is not null)
                 shoppingCardList.Remove(itemToRemove);
 
-            HttpContext.Session.Set(WC.SessionCard, shoppingCardList);
+            HttpContext.Session.Set(WC.SessionCart, shoppingCardList);
             return RedirectToAction(nameof(Index));
         }
 

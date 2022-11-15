@@ -1,6 +1,6 @@
 ﻿namespace UdemyAspNetCore.Models
 {
-    public class ShoppingCard
+    public class ShoppingCart
     {
         public int ProductId { get; set; }
     }
